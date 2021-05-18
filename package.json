@@ -1,0 +1,46 @@
+{
+  "name": "webpack-loader",
+  "version": "1.0.0",
+  "description": "自定义webpack loader",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config ./webpack.config.js",
+    "serve": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aloehh/webpack-test.git"
+  },
+  "author": "aloeh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aloehh/webpack-test/issues"
+  },
+  "homepage": "https://github.com/aloehh/webpack-test#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.2.5",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.2.4",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.5.0",
+    "less": "^3.12.2",
+    "less-loader": "^6.2.0",
+    "loader-utils": "1.2.2",
+    "mini-css-extract-plugin": "^1.6.0",
+    "postcss-loader": "^4.0.4",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.0",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "postcss": "^8.1.4"
+  },
+  "browserslist": [
+    "last 2 version",
+    "> 1%",
+    "not ie < 11"
+  ]
+}
