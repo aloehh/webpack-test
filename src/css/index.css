@@ -14,3 +14,12 @@ div {
   border: 1px solid green;
   background: url("../assets/img1.jpeg") center no-repeat;
 }
+
+#app {
+  position: absolute;
+	top: 10px;
+	width: 100%;
+	text-align: center;
+	z-index: 100;
+	display:block;
+}

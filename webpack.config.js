@@ -1,8 +1,12 @@
 const path  = require('path')
+const webpack = require('webpack')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+// 清理webpack编译时输出的无用信息
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
+console.log('process.env', process.env.NODE_ENV);
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -26,11 +30,13 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: [{
+        use: [
+        // 'style-loader',
+          {
           loader: MiniCssExtractPlugin.loader,
-          options: {
-            hmr: true  // 模块热替换， 仅在开发环境开启
-          }
+          // options: {
+          //   hmr: true  // 模块热替换， 仅在开发环境开启
+          // }
         }, 'css-loader', "postcss-loader", 'less-loader']
       },
       {
@@ -70,26 +76,50 @@ module.exports = {
   }, // 总结: loader 处理webpack不支持的格式文件，模块;一个loader 只处理一件事情;loader有执行顺序: 从下到上, 从右到左
   devtool: "inline-source-map",
   devServer: {
+    historyApiFallback: true,
     contentBase: "./dist",
-    open: true,
+    host: 'localhost',
     port: 8081,
+    open: true,
+    overlay: true,
+    inline: true,
+    progress: true,
+    quiet: true,
+    proxy: {
+      "/api": {
+        target: "http://localhost:9092",
+      },
+    },
   },
   plugins: [
     new htmlWebpackPlugin({
       template: "./src/index.html",
-      filename: "index.html"
+      filename: "index.html",
+      
     }),
     new htmlWebpackPlugin({
       template: "./src/home/index.html",
-      filename: "home.html"
+      filename: "home.html",
+      chunks: ['home']
     }),
     new htmlWebpackPlugin({
       template: "./src/detail/index.html",
-      filename: "detail.html"
+      filename: "detail.html",
+      chunks: ['detail']
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name][chunkhash:8].css",// 防止缓存
+      chunkFilename: '[name].[contenthash:8].css'
     }),
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      filename: "[name][chunkhash:8].css" // 防止缓存
-    })
+    new FriendlyErrorsWebpackPlugin({
+      compilationSuccessInfo: {
+          messages: [
+            `Your application is running: http://localhost:8081`
+          ]
+      },
+      clearConsole: true
+    }),
+    // new webpack.HotModuleReplacementPlugin(),
   ],
 }

@@ -4,11 +4,35 @@
   src: url("../font/webfont.woff") format("woff2");
 }
 
-div {
-  font-family: "webfont" !important;
-  transform: translateX(10px);
-  color: blue;
-  height: 300px;
-  border: 1px solid green;
-  background: url("../assets/img1.jpeg") center no-repeat;
+// div {
+//   font-family: "webfont" !important;
+//   transform: translateX(10px);
+//   color: pink;
+//   height: 300px;
+//   border: 1px solid green;
+//   background: url("../assets/img1.jpeg") center no-repeat;
+// }
+
+html,body{
+  margin: 0;
+  padding: 0;
+  background: #333;
+}
+.bubble {
+  position: absolute;
+  animation-timing-function: linear;
+  animation-name: floating;
+  animation-iteration-count: infinite;
+}
+
+@keyframes floating {
+  0%{
+    transform: translateY(0px);
+  }
+  50%{
+    transform: translateY(-5px);
+  }
+  100%{
+    transform: translateY(0px);
+  }
 }

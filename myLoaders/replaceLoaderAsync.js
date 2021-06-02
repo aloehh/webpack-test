@@ -6,7 +6,7 @@ const loaderUtils = require("loader-utils");
  */
 
 module.exports = function(source) {
-  console.log('source', source);
+  // console.log('source', source);
   const options = loaderUtils.getOptions(this)
   const callback = this.async()
     const result = source.replace('hello', options.name)

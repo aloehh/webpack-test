@@ -7,7 +7,7 @@
  */
 
 module.exports = function(source) {
-  console.log('source', source);
+  // console.log('source', source);
   const result = source.replace('星期一', '星期日')
   return result
 }
